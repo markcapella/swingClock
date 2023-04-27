@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=swingClock
+
+Path=/usr/local/swingClock
+Exec=java --module-path /snap/openjfx/current/sdk/lib/ --add-modules javafx.controls,javafx.swing swingClock
+Icon=/usr/share/icons/hicolor/48x48/apps/swingclock.png
+
+Terminal=false
+Type=Application
+StartupNotify=true
+
+Categories=Utility;Accessories;
