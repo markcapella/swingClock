@@ -11,13 +11,6 @@ JRUNTIME = java
 # Targets needed to build the executable from the source folder.
 
 swingClock: swingClock.java Global.java AlarmButton.java
-	@if [ ! -d "/snap/openjfx/current" ]; then \
-		echo "Error! The openjfx package is not installed, but is required."; \
-		echo "   try 'sudo snap install openjfx', then re-run this make."; \
-		echo ""; \
-		exit 1; \
-	fi
-
 	$(JCOMPILER) $(JFLAGS) swingClock.java
 
 	@echo "Build Done !"
@@ -27,13 +20,6 @@ swingClock: swingClock.java Global.java AlarmButton.java
 # Target needed to run the executable from the source folder.
 
 run: swingClock
-	@if [ ! -d "/snap/openjfx/current" ]; then \
-		echo "Error! The openjfx package is not installed, but is required."; \
-		echo "   try 'sudo snap install openjfx', then re-run this make."; \
-		echo ""; \
-		exit 1; \
-	fi
-
 	$(JRUNTIME) $(JFLAGS) swingClock
 
 	@echo "Run Done !"
@@ -52,12 +38,6 @@ endif
 
 	@echo
 	@echo "sudo make install: starts ..."
-
-	# # Kill any active instances. Installed and run-from-dev folder conflict
-	# # over shared ~/.java.userPrefs.
-	# for FILE in $$(pgrep java) ; do \
-	# 	ps -p $$FILE -o args --no-headers | egrep swingClock && kill $$FILE; \
-	# done
 
 	mkdir -p /usr/local/swingClock
 
@@ -86,11 +66,6 @@ ifneq ($(shell id -u), 0)
 	@echo
 	@exit 1;
 endif
-
-	# # Kill any active instances.
-	# for FILE in $$(pgrep java) ; do \
-	# 	ps -p $$FILE -o args --no-headers | egrep swingClock && kill $$FILE; \
-	# done
 
 	@echo ""
 	@echo "sudo make uninstall: starts ..."
